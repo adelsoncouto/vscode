@@ -1,0 +1,27 @@
+{
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 240,
+    "editor.wrappingIndent": "indent",
+    "files.insertFinalNewline": true,
+    "window.zoomLevel": 0,
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "breadcrumbs.enabled": true,
+    "workbench.sideBar.location": "left",
+    "editor.minimap.enabled": false,
+    "terminal.integrated.rendererType": "dom",
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "terminal.integrated.shell.linux": "bash",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "window.titleBarStyle": "custom",
+    "editor.formatOnSave": true,
+    "html.format.wrapAttributes": "force-expand-multiline",
+    "workbench.colorTheme": "Visual Studio Light"
+}
