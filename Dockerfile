@@ -145,7 +145,41 @@ RUN mkdir -p /tmp/code \
   && /usr/bin/code \
     --user-data-dir /tmp/code \
     --extensions-dir /tmp/extensions \
-    --install-extension thekalinga.bootstrap4-vscode
+    --install-extension thekalinga.bootstrap4-vscode \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension vscjava.vscode-java-dependency \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension vscjava.vscode-java-debug \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension vscjava.vscode-java-test \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension redhat.java \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension vscjava.vscode-maven \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension visualstudioexptteam.vscodeintellicode \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension alphabotsec.vscode-eclipse-keybindings \
+  && /usr/bin/code \
+    --user-data-dir /tmp/code \
+    --extensions-dir /tmp/extensions \
+    --install-extension fatihacet.gitlab-workflow
+
+
 
 # script inicial
 COPY ./settings.json /tmp/code/User/settings.json
