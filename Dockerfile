@@ -123,7 +123,7 @@ RUN apt-get clean \
   && mkdir -p /usr/src/init \
   && ln -s /usr/src/jvm/java/bin/* /usr/local/sbin/ \
   && ln -s /usr/src/mvn/bin/* /usr/local/sbin/ \
-  && ln -s /usr/src/mongodb/bin/* /usr/local/sbin/ \
+  && ln -s /usr/src/mongodb/bin/* /usr/local/sbin/
 
   # instalo as extenções
   RUN mkdir -p /tmp/code \
