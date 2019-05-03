@@ -72,5 +72,13 @@
     {
         "key": "ctrl+shift+s",
         "command": "workbench.action.files.saveAll"
+    },
+    {
+        "key": "ctrl+shift+alt+p",
+        "command": "editor.action.addSelectionToPreviousFindMatch"
+    },
+    {
+        "key": "ctrl+shift+alt+n",
+        "command": "editor.action.addSelectionToNextFindMatch"
     }
 ]

@@ -12,52 +12,52 @@ RUN DEBIAN_FRONTEND=noninteractive \
   && apt-get update \
   && apt-get upgrade -y \
   && apt-get install -y \
-    apt-transport-https \
-    aspell \
-    autogen \
-    automake \
-    build-essential \
-    chromium-browser \
-    chromium-chromedriver \
-    curl \
-    emacs \
-    gettext \
-    git \
-    graphviz \
-    gvfs-bin \
-    htop \
-    iproute2 \
-    iputils-ping \
-    jq \
-    libasound2 \
-    libc6-dev \
-    libcairo2 \
-    libcanberra-gtk-module \
-    libcurl4 \
-    libfontconfig1 \
-    libgconf2-4 \
-    libgl1-mesa-glx \
-    libglib2.0-bin \
-    libgtk-3-0 \
-    libnotify-dev \
-    libnss3-dev \
-    libpango-1.0-0 \
-    libstdc++6 \
-    libtool \
-    libxext-dev \
-    libxkbfile1 \
-    libxrender-dev \
-    libxss1 \
-    libxtst-dev \
-    locales \
-    mono-complete \
-    openssl \
-    rxvt-unicode-256color \
-    software-properties-common \
-    sudo \
-    unzip \
-    vim \
-    x11-xserver-utils \
+  apt-transport-https \
+  aspell \
+  autogen \
+  automake \
+  build-essential \
+  chromium-browser \
+  chromium-chromedriver \
+  curl \
+  emacs \
+  gettext \
+  git \
+  graphviz \
+  gvfs-bin \
+  htop \
+  iproute2 \
+  iputils-ping \
+  jq \
+  libasound2 \
+  libc6-dev \
+  libcairo2 \
+  libcanberra-gtk-module \
+  libcurl4 \
+  libfontconfig1 \
+  libgconf2-4 \
+  libgl1-mesa-glx \
+  libglib2.0-bin \
+  libgtk-3-0 \
+  libnotify-dev \
+  libnss3-dev \
+  libpango-1.0-0 \
+  libstdc++6 \
+  libtool \
+  libxext-dev \
+  libxkbfile1 \
+  libxrender-dev \
+  libxss1 \
+  libxtst-dev \
+  locales \
+  mono-complete \
+  openssl \
+  rxvt-unicode-256color \
+  software-properties-common \
+  sudo \
+  unzip \
+  vim \
+  x11-xserver-utils \
   && sed -i -e 's/# en_US.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen \
   && locale-gen pt_BR.UTF-8
 
@@ -121,65 +121,73 @@ RUN apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/* \
   && mkdir -p /usr/src/init \
-  && echo 'PATH="/usr/src/jvm/java/bin:/usr/src/mvn/bin:/usr/src/mongodb/bin:'"$PATH"'"' > /etc/environment
+  && ln -s /usr/src/jvm/java/bin/* /usr/local/sbin/ \
+  && ln -s /usr/src/mvn/bin/* /usr/local/sbin/ \
+  && ln -s /usr/src/mongodb/bin/* /usr/local/sbin/ \
 
-# instalo as extenções
-RUN mkdir -p /tmp/code \
+  # instalo as extenções
+  RUN mkdir -p /tmp/code \
   && mkdir -p /tmp/extensions \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension MS-CEINTL.vscode-language-pack-pt-BR \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension MS-CEINTL.vscode-language-pack-pt-BR \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension vscjava.vscode-java-pack \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension vscjava.vscode-java-pack \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension shengchen.vscode-checkstyle \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension shengchen.vscode-checkstyle \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension mikael.angular-beastcode \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension mikael.angular-beastcode \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension thekalinga.bootstrap4-vscode \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension thekalinga.bootstrap4-vscode \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension vscjava.vscode-java-dependency \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension vscjava.vscode-java-dependency \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension vscjava.vscode-java-debug \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension vscjava.vscode-java-debug \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension vscjava.vscode-java-test \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension vscjava.vscode-java-test \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension redhat.java \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension redhat.java \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension vscjava.vscode-maven \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension vscjava.vscode-maven \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension visualstudioexptteam.vscodeintellicode \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension visualstudioexptteam.vscodeintellicode \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension alphabotsec.vscode-eclipse-keybindings \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension alphabotsec.vscode-eclipse-keybindings \
   && /usr/bin/code \
-    --user-data-dir /tmp/code \
-    --extensions-dir /tmp/extensions \
-    --install-extension fatihacet.gitlab-workflow
-
-
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension fatihacet.gitlab-workflow \
+  && /usr/bin/code \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension jebbs.plantuml \
+  && /usr/bin/code \
+  --user-data-dir /tmp/code \
+  --extensions-dir /tmp/extensions \
+  --install-extension peterjausovec.vscode-docker
 
 # script inicial
 COPY ./settings.json /tmp/code/User/settings.json
