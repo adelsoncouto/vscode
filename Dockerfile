@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Adelson Silva Couto <adscouto@gmail.com>
+LABEL maintainer="Adelson Silva Couto <adscouto@gmail.com>"
 
 USER root
 
@@ -57,6 +57,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
   sudo \
   unzip \
   vim \
+  mariadb-client-10.1 \
   x11-xserver-utils \
   && sed -i -e 's/# en_US.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen \
   && locale-gen pt_BR.UTF-8
@@ -99,6 +100,27 @@ RUN mkdir -p /usr/src/jvm/java11 \
   && chmod +x /usr/src/jvm/java11/bin -R \
   && ln -s /usr/src/jvm/java11 java 
 
+# dbeaver
+RUN mkdir /usr/src/dbeaver \
+  && cd /usr/src/dbeaver \
+  && curl -fSL https://dbeaver.io/files/6.0.4/dbeaver-ce-6.0.4-linux.gtk.x86_64.tar.gz -o dbeaver.tar.gz \
+  && tar -zxf dbeaver.tar.gz \
+  && rm -rf dbeaver.tar.gz \
+  && mv dbeaver dbeaver-dir \
+  && for n in $(ls);do mv ./$n/* ./;rm -rf ./$n;done \
+  && chmod +x /usr/src/dbeaver/dbeaver
+
+# mongodb
+RUN mkdir -p /usr/src/mongodb \
+  && mkdir -p /data/db \
+  && mkdir -p /var/log/mongodb \
+  && cd /usr/src/mongodb \
+  && curl -fSL 'http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1804-4.0.5.tgz' -o mongodb.tgz \
+  && tar -zxf mongodb.tgz \
+  && rm -rf mongodb.tgz \
+  && for n in $(ls);do mv ./$n/* ./;rm -rf ./$n;done \
+  && chmod +x /usr/src/mongodb/bin -R
+
 # instalo o nodejs
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
   && apt-get update \
@@ -123,10 +145,11 @@ RUN apt-get clean \
   && mkdir -p /usr/src/init \
   && ln -s /usr/src/jvm/java/bin/* /usr/local/sbin/ \
   && ln -s /usr/src/mvn/bin/* /usr/local/sbin/ \
-  && ln -s /usr/src/mongodb/bin/* /usr/local/sbin/
+  && ln -s /usr/src/mongodb/bin/* /usr/local/sbin/ \
+  && ln -s /usr/src/dbeaver/dbeaver /usr/local/sbin/dbeaver
 
-  # instalo as extenções
-  RUN mkdir -p /tmp/code \
+# instalo as extenções
+RUN mkdir -p /tmp/code \
   && mkdir -p /tmp/extensions \
   && /usr/bin/code \
   --user-data-dir /tmp/code \

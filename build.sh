@@ -1,7 +1,7 @@
 #!/bin/bash
 
 imagem='adelsoncouto/vscode'
-versao='1.1.1'
+versao='1.2.0'
 
 ok=$(docker images --format "{{.Repository}}:{{.Tag}}"| grep $imagem:$versao | wc -l)
 

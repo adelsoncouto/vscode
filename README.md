@@ -18,4 +18,16 @@ docker run -it --rm \
   adelsoncouto/vscode:tagname
 ```
 
+# Ambiente
 
+* OpenJDK 11
+* Debeaver 
+* Visual Studio Code
+* NodeJS
+* Maven
+* Mongodb
+
+
+# Futuro
+
+* Instalar https://www.geany.org
