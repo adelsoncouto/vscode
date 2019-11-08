@@ -89,21 +89,21 @@ RUN mkdir /usr/src/mvn \
   && for n in $(ls);do mv ./$n/* ./;rm -rf ./$n;done \
   && chmod +x /usr/src/mvn/bin -R
 
-# openjdk 11
-RUN mkdir -p /usr/src/jvm/java11 \
-  && cd /usr/src/jvm/java11 \
-  && curl -fSL https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz -o java.tar.gz \
+# openjdk 13
+RUN mkdir -p /usr/src/jvm/java13 \
+  && cd /usr/src/jvm/java13 \
+  && curl -fSL 'https://download.java.net/java/GA/jdk13.0.1/cec27d702aa74d5a8630c65ae61e4305/9/GPL/openjdk-13.0.1_linux-x64_bin.tar.gz' -o java.tar.gz \
   && tar -zxf java.tar.gz \
   && rm -rf java.tar.gz \
   && for n in $(ls);do mv ./$n/* ./;rm -rf ./$n;done \
   && cd /usr/src/jvm \
-  && chmod +x /usr/src/jvm/java11/bin -R \
-  && ln -s /usr/src/jvm/java11 java 
+  && chmod +x /usr/src/jvm/java13/bin -R \
+  && ln -s /usr/src/jvm/java13 java 
 
 # dbeaver
 RUN mkdir /usr/src/dbeaver \
   && cd /usr/src/dbeaver \
-  && curl -fSL https://dbeaver.io/files/6.0.5/dbeaver-ce-6.0.5-linux.gtk.x86_64.tar.gz -o dbeaver.tar.gz \
+  && curl -fSL 'https://dbeaver.io/files/6.2.4/dbeaver-ce-6.2.4-linux.gtk.x86_64.tar.gz' -o dbeaver.tar.gz \
   && tar -zxf dbeaver.tar.gz \
   && rm -rf dbeaver.tar.gz \
   && mv dbeaver dbeaver-dir \
@@ -137,6 +137,13 @@ RUN npm install -g npm \
 RUN curl -fSL  https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode-amd64.deb \
   && dpkg -i vscode-amd64.deb \
   && rm vscode-amd64.deb
+
+# instalo yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update \
+  && apt-get install yarn \
+  && apt-get install --no-install-recommends yarn
 
 # remove temporário
 RUN apt-get clean \
@@ -210,7 +217,8 @@ RUN mkdir -p /tmp/code \
   && /usr/bin/code \
   --user-data-dir /tmp/code \
   --extensions-dir /tmp/extensions \
-  --install-extension peterjausovec.vscode-docker
+  --install-extension ms-azuretools.vscode-docker
+
 
 # script inicial
 COPY ./settings.json /tmp/code/User/settings.json
