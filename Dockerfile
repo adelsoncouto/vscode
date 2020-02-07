@@ -131,7 +131,8 @@ RUN npm install -g npm \
   && npm install -g cordova \
   && npm install -g typescript \
   && npm install -g @angular/cli \
-  && npm install -g ionic
+  && npm install -g ionic \
+  && npm install -g gulp-cli
 
 # instalo o vscode
 RUN curl -fSL  https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode-amd64.deb \
